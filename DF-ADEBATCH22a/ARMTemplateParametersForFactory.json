@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "DF-ADEBATCH22a"
+		},
+		"LS_adls_connectionString": {
+			"value": ""
+		},
+		"LS_adls_kv_connectionString": {
+			"value": "DefaultEndpointsProtocol=https;AccountName=adlsbatch22a;"
+		},
+		"LS_sql_password": {
+			"value": ""
+		},
+		"LS_sql_param_password": {
+			"value": ""
+		},
+		"KV_azure_properties_typeProperties_baseUrl": {
+			"value": "https://kvault-adebatch22.vault.azure.net/"
+		},
+		"LS_sql_properties_typeProperties_server": {
+			"value": "sqlserver-adebatch22a.database.windows.net"
+		},
+		"LS_sql_properties_typeProperties_database": {
+			"value": "sqldb_adebatch22"
+		},
+		"LS_sql_properties_typeProperties_userName": {
+			"value": "adebatch22"
+		},
+		"LS_sql_KV_properties_typeProperties_server": {
+			"value": "sqlserver-adebatch22a.database.windows.net"
+		},
+		"LS_sql_KV_properties_typeProperties_database": {
+			"value": "sqldb_adebatch22"
+		},
+		"LS_sql_KV_properties_typeProperties_userName": {
+			"value": "adebatch22"
+		},
+		"LS_sql_param_properties_typeProperties_server": {
+			"value": "@{linkedService().server_name}"
+		},
+		"LS_sql_param_properties_typeProperties_database": {
+			"value": "@{linkedService().db_name}"
+		},
+		"LS_sql_param_properties_typeProperties_userName": {
+			"value": "adebatch22"
+		},
+		"eventbasedtrigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/8a44f555-6954-4a26-963a-bec606516adf/resourceGroups/ADE_Batch22/providers/Microsoft.Storage/storageAccounts/adlsbatch22a"
+		},
+		"windowtrigger_properties_pipeline_parameters_windowstarttime": {
+			"value": "@trigger().outputs.windowStartTime"
+		},
+		"windowtrigger_properties_pipeline_parameters_windowendtime": {
+			"value": "@trigger().outputs.windowEndTime"
+		}
+	}
+}

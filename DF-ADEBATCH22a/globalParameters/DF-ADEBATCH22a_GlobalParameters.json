@@ -1,0 +1,6 @@
+{
+	"global_param": {
+		"type": "string",
+		"value": "100"
+	}
+}
