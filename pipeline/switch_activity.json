@@ -1,0 +1,68 @@
+{
+	"name": "switch_activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Switch1",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "Folder",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "Folder1",
+							"activities": [
+								{
+									"name": "Wait_folder1",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						},
+						{
+							"value": "Folder2",
+							"activities": [
+								{
+									"name": "Wait_folder2",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "Wait_false",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"country": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-03-26T07:57:23Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,24 @@
+{
+	"name": "Daily 6-am",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "schedule_pipeline_1",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 2,
+				"startTime": "2025-04-04T10:56:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"name": "LS_adls_kv",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=adlsbatch22a;",
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "KV_azure",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "adlskey"
+			}
+		}
+	}
+}

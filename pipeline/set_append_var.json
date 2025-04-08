@@ -1,0 +1,127 @@
+{
+	"name": "set_append_var",
+	"properties": {
+		"activities": [
+			{
+				"name": "Append variable1",
+				"type": "AppendVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "final_list",
+					"value": {
+						"value": "@variables('set_var1')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "set_var1",
+					"value": "madhuri"
+				}
+			},
+			{
+				"name": "Set variable1_copy1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Append variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "set_var1",
+					"value": "ramya"
+				}
+			},
+			{
+				"name": "Append variable1_copy1",
+				"type": "AppendVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable1_copy1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "final_list",
+					"value": {
+						"value": "@variables('set_var1')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Append variable1_copy1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "append_final_list",
+					"value": {
+						"value": "@variables('final_list')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"set_var1": {
+				"type": "String",
+				"defaultValue": "madhuri"
+			},
+			"final_list": {
+				"type": "Array"
+			},
+			"append_final_list": {
+				"type": "Array"
+			},
+			"list_of_files": {
+				"type": "Array"
+			},
+			"append_lis": {
+				"type": "Array"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-04-04T08:31:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "DF-ADEBATCH22a",
+	"properties": {
+		"globalParameters": {
+			"global_param": {
+				"type": "string",
+				"value": "100"
+			}
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2a11b949-6e5c-4b4b-b447-a42d30d08205",
+		"tenantId": "12052267-7429-485a-a871-4dd9a5c244bf"
+	}
+}

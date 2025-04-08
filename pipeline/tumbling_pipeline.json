@@ -1,0 +1,87 @@
+{
+	"name": "tumbling_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[TUMBLING_WINDOW_PROC]",
+						"storedProcedureParameters": {
+							"ENDDATE": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.windowendtime",
+									"type": "Expression"
+								}
+							},
+							"STARTDATE": {
+								"type": "String",
+								"value": {
+									"value": "@pipeline().parameters.windowstarttime",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "dynamic_tbl",
+						"type": "DatasetReference",
+						"parameters": {
+							"tbl_name": "cust_source"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "dynamic_tbl",
+						"type": "DatasetReference",
+						"parameters": {
+							"tbl_name": "Tumbling_Cust"
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"windowstarttime": {
+				"type": "string"
+			},
+			"windowendtime": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-04-05T07:11:16Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

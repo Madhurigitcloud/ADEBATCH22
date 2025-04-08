@@ -1,0 +1,90 @@
+{
+	"name": "copy_dynamic_db_n_tbl",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "dynamic_db_n_tbl",
+						"type": "DatasetReference",
+						"parameters": {
+							"tbl_name": {
+								"value": "@pipeline().parameters.inpu_tblname",
+								"type": "Expression"
+							},
+							"dbname": {
+								"value": "@pipeline().parameters.input_dbname",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "dynamic_db_n_tbl",
+						"type": "DatasetReference",
+						"parameters": {
+							"tbl_name": {
+								"value": "@pipeline().parameters.output_tblname",
+								"type": "Expression"
+							},
+							"dbname": {
+								"value": "@pipeline().parameters.output_dbname",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"input_dbname": {
+				"type": "string"
+			},
+			"inpu_tblname": {
+				"type": "string"
+			},
+			"output_dbname": {
+				"type": "string"
+			},
+			"output_tblname": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-03-22T09:49:16Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
